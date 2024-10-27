@@ -1,0 +1,38 @@
+
+name : CI/CD pipelines
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify Node.js version
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test
+
+      # Step 5: Build the application (if applicable)
+      - name: Build application
+        run: npm run build
+        
+          
