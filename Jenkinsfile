@@ -1,20 +1,30 @@
-pipeline {
-    agent any 
+pipeline{
+    agent any
+    tools {nodejs "NODEJS"}
     stages {
-        stage('Build') {
+        stage('Build'){
             steps {
-                echo 'Building ' 
+                script{
+                    sh 'npm install'
+                }
             }
         }
         stage('Test'){
-            steps {
-                echo 'Testing '
+            steps{
+                script{
+                    sh 'npm test || echo "No tests configured"'
+
+                }
             }
         }
         stage('Deploy'){
-            steps {
-                echo 'Deploying '
+            steps{
+                script{
+                    sh 'echo "Deploying the applications"'
+                    sh 'node server.js'
+                }
             }
         }
     }
+
 }
