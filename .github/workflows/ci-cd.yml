@@ -1,13 +1,13 @@
 name: CI/CD Pipeline
 
-# Trigger the workflow on push to main or pull requests
+# Trigger the workflow on push to staging or pull requests
 on:
   push:
     branches:
-      - main
+      - staging
   pull_request:
     branches:
-      - main
+      - staging
 
 # Define the jobs to run
 jobs:
