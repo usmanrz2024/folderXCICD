@@ -9,27 +9,23 @@ on:
     branches:
       - staging
 
-# Define the jobs to run
 jobs:
-  # Job 1: CI - Run Tests and Build
   build:
+    name: xero
     runs-on: ubuntu-latest
     
+
     steps:
-      # Step 1: Checkout code
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: checkout repostory
+      uses: actions/checkout@v2
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+       node-version: '14'
 
-      # Step 2: Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # Specify Node.js version
+    - name: install depedencies
+      run: npm install
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Run tests
-      - name: Run tests
-        run: npm test
+    - name: run tests
+      uses: npm test  
